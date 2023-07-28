@@ -1,0 +1,121 @@
+package view;
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+		int score1 = 0;
+		int score2 = 0;
+		int score3 = 0;
+		int score4 = 0;
+		String next = sc.nextLine();
+		
+		System.out.println("-------------프롤로그----------------");
+		next = sc.nextLine();
+		System.out.println("(소란스러운 소리)");
+		next = sc.nextLine();
+		System.out.println("글쎄~ 우리 오빠가 그랬다니까 ~ ㅋㅋㅋㅋㅋㅋ");
+		next = sc.nextLine();
+		System.out.println("라는 친구의 말을 듣고");
+		System.out.println("저 망할 기집애는 오늘도 지 남친 자랑질이네...");
+		next = sc.nextLine();
+		System.out.println("라는 당신의 말에 친구는");
+		next = sc.nextLine();
+		System.out.println("뭐 모솔이 하는 말이라 목소리가 잘 안들리네~ㅎㅎ");
+		next = sc.nextLine();
+		System.out.println("하며 놀려댔다.");
+		next = sc.nextLine();
+		System.out.println("집에 돌아와 쓰러지듯 칩대에 눕는 당신.");
+		next = sc.nextLine();
+		System.out.println("가만히 생각해보니 너무 서러워, 이불을 뒤집어쓰고");
+		next = sc.nextLine();
+		System.out.println("서럽게 엉엉 울기 시작한다....");
+		next = sc.nextLine();
+		System.out.println("그 순간....!!");
+		next = sc.nextLine();
+		System.out.println("당신에게 하나의 톡이 온다.");
+		next = sc.nextLine();
+		System.out.println("(플레이어 이름)아(야) 너 남자 소개 한번 받아볼래?");
+		next = sc.nextLine();
+		System.out.println("그렇게 모솔인생 '24년만의 첫 소개팅'이 다가오는데....");
+		next = sc.nextLine();
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		while (true) {
+//			System.out.println("스토리");
+//			System.out.println("==========================");
+//
+//			System.out.println("플레이어 대사");
+//			next = sc.nextLine();
+//
+//			System.out.println("1. 선택지");
+//			System.out.println("2. 선택지");
+//			System.out.println("3. 선택지");
+//			System.out.println("4. 선택지");
+
+//			ArrayList<> 사용			
+			
+//			getScore();같은 메소드를 생성해서 숫자 더해주는 로직을 짧게 만들기 
+
+			int input = sc.nextInt();
+
+			if (input == 1) {
+				System.out.println("선택지 선택 후 대사");
+				System.out.println("");
+				score1 += 10;
+				score2 += 7;
+				score3 += 5;
+				score4 += 3;
+
+			} else if (input == 2) {
+				System.out.println("선택지 선택 후 대사");
+				System.out.println("");
+				score1 += 7;
+				score2 += 10;
+				score3 += 3;
+				score4 += 5;
+
+			} else if (input == 3) {
+				System.out.println("선택지 선택 후 대사");
+				System.out.println("");
+				score1 += 5;
+				score2 += 3;
+				score3 += 10;
+				score4 += 7;
+
+			} else if (input == 4) {
+				System.out.println("선택지 선택 후 대사");
+				System.out.println("");
+				score1 += 3;
+				score2 += 5;
+				score3 += 7;
+				score4 += 10;
+				
+			}
+
+		}
+
+	}
+
+}

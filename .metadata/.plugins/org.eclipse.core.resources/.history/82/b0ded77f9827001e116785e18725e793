@@ -1,0 +1,16 @@
+package MovieGame;
+
+public class MovieGame_Main {
+
+	public static void main(String[] args) {
+		
+		
+		
+		MovieGame_Controller movie = new MovieGame_Controller();
+		
+		movie.play();
+		
+		
+	}
+
+}

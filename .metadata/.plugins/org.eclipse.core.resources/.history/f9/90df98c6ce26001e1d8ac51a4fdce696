@@ -1,0 +1,49 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class MusicPlayer {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		 
+		
+		while(true) {
+		System.out.println("====뮤직 플레이어====");
+		System.out.print("1.등록 2.목록 3.삭제 4.전체삭제 5.종료 >>");
+		int num = sc.nextInt();
+		
+		if(num==1) {
+			System.out.print("제목 : ");
+			String title = sc.next();
+			
+			System.out.print("가수 : ");
+			String singer = sc.next();
+			
+			System.out.print("시간 : ");
+			int playtime = sc.nextInt();
+			
+			MusicController musi = new MusicController(new MusicVo(title, singer, playtime));
+			
+			System.out.println(musi.playlist.get(0).title);
+			
+			
+			
+		}else if(num==2) {
+			MusicController conn = new MusicController();
+			System.out.println(conn.playlist.get(0).getPlayTime());
+		
+		}else if(num==3) {
+			
+		}else if(num==4) {
+			
+		}else if(num==5) {
+			break;
+			
+		}
+	
+		
+		}
+		}
+
+}

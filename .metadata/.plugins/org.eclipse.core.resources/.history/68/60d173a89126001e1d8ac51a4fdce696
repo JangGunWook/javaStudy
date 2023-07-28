@@ -1,0 +1,262 @@
+package model;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import veiw.Main;
+
+public class MemberDAO {
+		// DAO : Data Access Object : 데이터에 접근하는 것을 도와주는 객체
+		// DB와 연결해서 insert, delete, update, select 하는 코드들의 모음
+		// 메서드 형태로 코드 작성
+	
+	//공통필드
+	ResultSet rs = null;
+	Connection conn = null;
+	PreparedStatement psmt = null;
+	
+	
+	
+	//DB연결 메소드
+	private void getconn() {
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			String url = "jdbc:oracle:thin:@127.0.0.1:1521:xe";
+			String user = "service";
+			String passward = "12345";
+
+			conn = DriverManager.getConnection(url, user, passward);
+
+			if (conn != null) {
+				System.out.println("연결 성공");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	///////////////////////////////////////////////////////////////////////////////
+	
+	//DB 종료 메소드
+	private void getClose() {
+
+		try {
+			if (psmt != null)
+				psmt.close(); // sql문 전송 종료
+			if (conn != null)
+				conn.close(); // DB연결 종료
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void getClose1() {
+		try {
+			if (rs != null)
+				rs.close();
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+			
+	}
+	//////////////////////////////////////////////////////////////////////////////////
+
+	// 회원가입 메서드
+
+	public int join(String id, String pw, String name, int age) {
+
+		int row = 0;
+		try {
+			getconn();
+
+			String sql = "INSERT INTO AIMEMBER VALUES(?,?,?,?)";
+			psmt = conn.prepareStatement(sql);
+
+			psmt.setString(1, id);
+			psmt.setString(2, pw);
+			psmt.setString(3, name);
+			psmt.setInt(4, age);
+
+			row = psmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			getClose();
+		}
+		return row;
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////////////////
+
+	// 로그인 메서드
+	public String login(String id, String pw) {
+
+	
+		String uName = null;
+
+		try {
+			
+			getconn();
+			
+			String sql = "SELECT * FROM AIMEMBER WHERE ID = ? AND PW = ?";
+
+			psmt = conn.prepareStatement(sql);
+
+			psmt.setString(1, id);
+			psmt.setString(2, pw);
+
+			rs = psmt.executeQuery();
+
+			if (rs.next() == true) {
+				uName = rs.getString("NAME");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			getClose();
+			getClose1();
+		}
+		return uName;
+	}
+	////////////////////////////////////////////////////////////////////////////////////////////////
+	//회원탈퇴
+	public int resign(String id, String pw) {
+		
+		
+		int row = 0;
+		
+		try {
+			getconn();
+			
+			// 3) sql문 작성
+			String sql = "DELETE FROM AIMEMBER WHERE ID = ? AND PW = ?";
+			
+			psmt = conn.prepareStatement(sql);
+			
+			// ?인자 채줘주기
+			psmt.setString(1, id);
+			psmt.setString(2, pw);
+			
+			// 4) sql문 전송/실행
+			//	select문 전송
+			// ResultSet이란?
+			// : 조회된 데이터 결과를 테이블과 같은 형태로 표현해주는 집합 자료구조
+			// : cursor를 가지고 있다.(처음에는 column명을 가리키고 있음)
+			// : cursor가 가리키고 있는 데이터만 가져올 수 있다.
+			row = psmt.executeUpdate();
+			
+			// rs.next() ---> 커서를 한 행 밑으로 내리는 작업이다!
+			
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			getClose();
+			}
+		return row;
+	}
+	
+	
+	
+	
+	//////////////////////////////////////////////////////////////////////////////////////////////
+
+	// 전체회원조회 메서드
+	public ArrayList<MemberDTO> selectAll() {
+		
+
+		
+		MemberDTO dto = null;
+		
+		//DTO의 변수들을 불러온다!
+		ArrayList<MemberDTO> array = new ArrayList<MemberDTO>();
+		
+		
+		try {
+			getconn();
+			String sql = "SELECT * FROM AIMEMBER";
+
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+
+			System.out.println();
+			
+
+		
+	
+			// DTO의 변수들을 불러온다!
+			// ArrayList<MemberDTO> array = null;
+			while (rs.next()) {
+				String name = rs.getString("NAME");
+				String id = rs.getString("ID");
+				int age = rs.getInt("AGE");
+				System.out.println(id);
+				dto = new MemberDTO(id, "", name, age);
+				System.out.println(dto.getName());
+				// 조회된 결과에 담겨있는 데이터를 DTO로 옮겨 담기!
+				array.add(dto);
+				System.out.println(array);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			getClose();
+			getClose1();
+		}
+		return array ;
+	}
+	
+	/////////////////////////////////////////////////////////////////////////////////////////
+	//회원 정보 수정
+	public int  amend(String name, String id, String pw) {
+		
+		int row = 0;
+			
+		try {
+			getconn();
+			
+			//회원 계정확인
+			String sql = "SELECT * FROM AIMEMBER WHERE ID = ? AND PW = ? ";
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			psmt.setString(2, pw);
+			
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				System.out.println("회원계정확인이 확인되었습니다.");
+			}else {
+				System.out.println("회원계정확인이 안됩니다.");
+			}
+			
+			String sql1 = "UPDATE AIMEMBER SET NAME = ? WHERE ID = ? AND PW = ?";
+			
+			psmt = conn.prepareStatement(sql1);
+				
+		
+				psmt.setString(1, name);
+				psmt.setString(2, id);
+				psmt.setString(3, pw);
+		
+			row = psmt.executeUpdate();
+		
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		} finally {
+			getClose();
+			getClose1();
+			
+		}
+		return row;
+	
+}
+}

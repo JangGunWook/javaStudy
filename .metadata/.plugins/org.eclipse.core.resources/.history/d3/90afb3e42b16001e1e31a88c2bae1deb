@@ -1,0 +1,10 @@
+package 이차원배열;
+
+public class ex04이창원배열_다이아몬드 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

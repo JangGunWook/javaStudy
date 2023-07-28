@@ -1,0 +1,17 @@
+package MovieGame;
+
+public class MovieGame_Main {
+
+	public static void main(String[] args) {
+		
+		
+		
+		MovieGame_Controller movie = new MovieGame_Controller();
+		
+		//영화제목 맞추기 게임 시작
+		movie.play();
+		
+		
+	}
+
+}

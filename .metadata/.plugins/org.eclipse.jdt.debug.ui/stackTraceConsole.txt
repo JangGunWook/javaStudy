@@ -1,0 +1,2 @@
+System.out.println(isPerfect(6));		// 6는 완전수 : True
+		System.out.println(isPerfect(44));		// 44는 완전수X : false

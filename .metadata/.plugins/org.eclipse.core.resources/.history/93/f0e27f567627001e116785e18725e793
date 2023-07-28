@@ -1,0 +1,68 @@
+package BalanceGame;
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.Scanner;
+
+public class balanceGame {
+
+	public static <Stirng> void main(String[] args) {
+		
+	
+		Scanner sc = new Scanner(System.in);
+		
+		
+		Random ran = new Random();
+		
+		ArrayList<String> balance = new ArrayList<String>();
+		String[] bal = new String[10];
+		
+		// 1번 게임
+		balance.add("1.낮저밤이 vs 2.낮이밤저");
+		// 2번 게임
+		balance.add("1.이성친구 가능 vs 2.이성친구 불가능");
+		// 3번 게임
+		balance.add("1.애인 집에 내 절친 팬티 vs 2 절친 집에 내 애인 팬티");
+		// 4번 게임
+		balance.add("1.양치 안하고 키스하기 vs 2.안씻고 사랑을 찐하게 나누기");
+		// 5번 게임
+		balance.add("애인이 애인 허용 범위 내의 스킨십은? 1.팔짱 vs 2.포웅");
+		// 6번 게임
+		balance.add("1.불을 키우고 사랑을 나누기 vs 2.불을 끄고 사랑을 나누기");
+		// 7번 게임
+		balance.add("1.결혼하면 자녀는 3명을 기르자 vs 2.자식없이 평생 배우자랑만 살기");
+		// 8번 게임
+		balance.add("1.애인이 털복숭이 vs 2.애인이 대머리");
+		// 9번 게임
+		balance.add("1. 한 달동안 포웅금지 vs 2.한 달동안 뽀뽀금지");
+		// 10번 게임
+		balance.add("1.얼굴만 잘생긴 애인  vs 2.몸매만 좋은 애인 ");
+		
+		System.out.println("벨런스 게임을 시작합니다!");
+		System.out.println("무조건 둘 중에 하나를 골라야합니다!");
+		System.out.println("선택한 답안에 따라 점수가 당신의 이상형에 점수가 올라갑니다!");
+		
+		
+		// 인덱스 번호 중복 안되게 하는 알고리즘
+		for(int i =0; i<balance.size(); i++) {
+			bal[i] = balance.get(ran.nextInt(10)); //0~9번까지
+			for(int j=0; j<i; j++) {	//비교대상할 인덱스 번호를 만들기
+				if(bal[i]==bal[j]) {
+					i--;
+				}
+			}
+		}
+		
+		for(int i = 0; i<3; i++) {
+			System.out.print(bal[i] + ">> ");
+	
+			int num = sc.nextInt();
+		}
+		
+
+	}
+	
+	
+	
+	
+
+}

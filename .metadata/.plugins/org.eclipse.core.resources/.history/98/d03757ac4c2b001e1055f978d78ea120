@@ -1,0 +1,501 @@
+package view;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import BalanceGame.BalanceGame_Controller;
+import Login.Login_Controller;
+import MovieGame.MovieGame_Controller;
+import MusicGame.MusicController;
+import javazoom.jl.player.MP3Player;
+
+
+
+
+
+
+
+
+public class Main {
+	
+		
+			
+		
+
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		//스토리 넘어가기
+		String next = sc.nextLine();
+		//문제 답변
+		int answer;
+		String answer1;
+		
+		String k = null;
+		String playId=null;
+		//Select객체
+		Select sel = new Select();
+		
+		String dynamicAsciiArt =
+	            " □□□□□□■□□□□□□□□□□□□■□□■□□■■■■■■□□□■□□□□□□□□□□□□■□■□□■■■■■■□□□■ \n"+
+	            " □□□□□□■□□□□□□■■■■■□■□□■□□■□□□□□□□□■□□□□□■■■■■□□■□■□□■■□□■■□□□■ \n"+
+	            " □□□□□□■□□□□□□□□□□■□■□□■□□■□□□□□□□□■□□□□□□□□□■□□■□■□□■□□□□■□□□■ \n"+
+	            " □□□□□■■■□□□□□□□□■■□■□□■□□■■■■■■□□□■□□□□□□□□■■□□■□■□□■□□□□■□□□■ \n"+
+	            " □□□■■■□■■■□□□□□□■■□■■■■□□■□□□□□□□□■□□□□□□□□■■■■■□■□□■■□□■■□□□■ \n"+
+	            " □□■■■□□□■■■□□□□□■■□■□□■□□■■■■■■■■□■□□□□□□□□■■■■■□■□□■■■■■■□□□■ \n"+
+	            " □■■□□□■□□□■■□□□■■□□■□□■□□■■■■■□□□□■□□□□□□□■■□□□■□■□□□□□□□□□□□■ \n"+
+	            " □□□□□□■□□□□□□□■■■□□■□□■□□□□□■■■■■■□□□□□□□■■■□□□■□■□□□□■■■■■■■■ \n"+
+	            " □□□□□□■□□□□□□■■□□□□■□□■□□□□■■■□□■■■□□□□□■■□□□□□■□■□□□□■□□□□□□■ \n"+
+	            " ■■■■■■■■■■■■□■□□□□□■□□■□□□□■□□□□□□■□□□□□■□□□□□□■□■□□□□■□□□□□□■ \n"+
+	            " □□□□□□□□□□□□□□□□□□□■□□■□□□□■■□□□□■■□□□□□□□□□□□□■□■□□□□■□□□□□□■ \n"+
+	            " □□□□□□□□□□□□□□□□□□□■□□■□□□□■■■■■■■□□□□□□□□□□□□□■□■□□□□■■■■■■■■ \n";
+
+	          
+	      
+	      
+	      
+	      
+	      
+	      try {
+	               for (char c : dynamicAsciiArt.toCharArray()) {
+	                   System.out.print(c);
+	                   Thread.sleep(3); // 100밀리초(0.1초) 지연
+	               }
+	           } catch (InterruptedException e) {
+	               e.printStackTrace();
+	           }
+	      
+		
+		
+		
+		System.out.println("====회원가입 및 로그인====");
+	   while(true) {System.out.println("[1] 회원가입 [2] 로그인 [3] 회원탙퇴");
+		int input = sc.nextInt();
+		
+	
+		
+/////////////////////////////////////////////////////////// 회원가입		
+		if(input==1) {
+			System.out.println("====회원가입====");
+			
+			// 사용자 입출력 구간
+			System.out.print("ID 입력 : ");
+			String id  = sc.next();
+			System.out.print("PW 입력 : ");
+			String pw  = sc.next();
+			System.out.print("이름 입력 : ");
+			String name  = sc.next();
+			
+			Login_Controller dao = new Login_Controller();
+			int row = dao.join(id, pw, name);
+			
+			if(row>0) {
+				System.out.println("회원가입 성공 ! ");
+			}else {
+				System.out.println("회원가입 실패 ㅠㅠ");
+			}
+	/////////////////////////////////////////////////////////// 로그인		
+		}else if(input ==2) {
+			System.out.println("====로그인====");
+
+			System.out.print("ID 입력 : ");
+			String id = sc.next();
+			System.out.print("PW 입력 : ");
+			String pw = sc.next();
+			
+			Login_Controller dao = new Login_Controller();
+			String uName = dao.login(id, pw);
+			
+			if(uName!= null) {
+				System.out.println(uName + "님 환영합니다.");
+				k=uName;
+				playId= id;
+				 break;
+			}else {
+				System.out.println("로그인에 실패했습니다.");
+			}
+			
+		}
+/////////////////////////////////////////////////////////// 회원탈퇴	
+		else if(input==3) {
+			System.out.println("====회원탈퇴====");
+			
+			System.out.print("탈퇴할 ID 입력 : ");
+			String id = sc.next();
+			System.out.print("PW 입력 : ");
+			String pw = sc.next();
+			
+			Login_Controller dao = new Login_Controller();
+			int row = dao.delUser(id, pw);
+			
+			if(row>0) {
+				System.out.println("회원 탈퇴에 성공하였습니다.");
+			}else {
+				System.out.println("올바른 ID나 PW를 입력해주세요.");
+			}
+			
+			
+		}else {
+			System.out.println("잘못누르셨습니다!");
+		}
+	   }
+		
+		
+	
+		
+		
+		
+		
+		
+		
+
+		
+		
+		
+		
+		
+		System.out.println("-------------프롤로그----------------");
+		next = sc.nextLine();
+		System.out.println("(소란스러운 소리)");
+		next = sc.nextLine();
+		System.out.println("글쎄~ 우리 오빠가 그랬다니까 ~ ㅋㅋㅋㅋㅋㅋ");
+		next = sc.nextLine();
+		System.out.println("라는 친구의 말을 듣고");
+		System.out.println("저 망할 기집애는 오늘도 지 남친 자랑질이네...");
+		next = sc.nextLine();
+		System.out.println("라는 당신의 말에 친구는");
+		next = sc.nextLine();
+		System.out.println("뭐 모솔이 하는 말이라 목소리가 잘 안들리네~ㅎㅎ");
+		next = sc.nextLine();
+		System.out.println("하며 놀려댔다.");
+		next = sc.nextLine();
+		
+		
+	   
+	      
+
+	      
+	      ///////////////////////////////////////////
+	      
+	      System.out.println("드디어 내일,, 결전의 날이 다가온다!!");
+	      sc.nextLine();
+	      System.out.println("어떻게 입고 갈까?");
+	      sc.nextLine();
+	      System.out.println("1. 편안하게");
+	      System.out.println("2. 개성있게");
+	      System.out.println("3. 깔끔하게");
+	      System.out.println("4. 파인거^__^");
+	      
+	      answer = sc.nextInt();
+	      sel.select4(answer);
+	      
+	      sc.nextLine();
+	      
+	      System.out.println();
+	   
+	      System.out.println("늦었다!! 소개팅남에게 어떻게 연락을  해야할까?");
+	      // 달리는 발걸음 소리 삽임
+	      sc.nextLine();
+	      System.out.println("1. 죄송해요...ㅠㅠ 조금 늦을거 같아요...ㅠ");
+	      System.out.println("2. 지하철 지연으로 10분 정도? 늦을거 같아요...");
+	      System.out.println("3. 거짓말로 둘러댄다.");
+	      System.out.println("4. 특별한 연락은 하지 않는다.");
+	      
+	      answer = sc.nextInt();
+	      sel.select4(answer);
+	      sc.nextLine();
+	      System.out.println();
+	      
+	      
+	      System.out.println("지각을 만회하고자 소개팅남에게 음료를 사려고 한다.");
+	      sc.nextLine();
+	      System.out.println("\"지각했으니까 제가 음료살게요!\" ");
+	      sc.nextLine();
+	      System.out.println("1.아이스아메리카노 ");
+	      System.out.println("2. 녹차라떼");
+	      System.out.println("3. 딸기요거트");
+	      System.out.println("4. 메뉴를 물어보자!");
+	      
+	      answer = sc.nextInt();
+	      sel.select4(answer);
+	      sc.nextLine();
+	      System.out.println();
+	      
+	      System.out.println("본격적인 소개팅 시작!");
+	      sc.nextLine();
+	      System.out.println("소개팅남이 \"취미가 어떻게 되세요?\" 라고 물어왔다.");
+	      sc.nextLine();
+	      System.out.println("나는 당황하지 않고,");
+	      sc.nextLine();
+	      System.out.println("1. 코딩공부 좋아해요!");
+	      System.out.println("2. 방탈출 좋아해요!");
+	      System.out.println("3. 뮤지컬 감상 좋아해요!");
+	      System.out.println("4. 리그오브레전드 좋아해요!");
+	      
+	        answer = sc.nextInt();
+	        sel.select4(answer);
+	      
+	      sc.nextLine();
+	      System.out.println();
+	      
+	      System.out.println("이어지는 소개팅남의 질문공세!");
+	      sc.nextLine();
+	      System.out.println("\"혹시 좋아하시는 스타일 같은거 있으신가요?");
+	      sc.nextLine();
+	      System.out.println("\"저는.....\"");
+	      sc.nextLine();
+	      System.out.println("1. 마초남 같은 스타일이 좋아요!");
+	      System.out.println("2. 당신같은 스타일이 좋아요!");
+	      System.out.println("3. 스타1 이요? 전 스타2가 더 좋은데! 깔깔깔!");
+	      System.out.println("4. 젠틀한 스타일이 좋아요!");
+	      
+	      answer = sc.nextInt();
+	      sel.select4(answer);
+	      sc.nextLine();
+	      System.out.println();
+	      
+	      System.out.println("소개팅남의 질문이 끝나고, 어색한 정적만이");
+	      sc.nextLine();
+	      System.out.println("감도는 중, 카페에서 흘러나오는 노래를 듣곤,");
+	      sc.nextLine();
+	      System.out.println("소개팅남이 \"어? 제가 좋아하는 노래인데! 혹시 아세요?\"");
+	      sc.nextLine();
+	      System.out.println("나는...");
+	      sc.nextLine();
+	      // 노래맞추기
+	      System.out.println("1번 문제__ 노래 제목맞추기 게임");
+			MusicController contr = new MusicController();
+
+			 
+			System.out.println("무슨노래일까??");
+			System.out.println("영어로 시작하면 대문자로 시작하세요.");
+			contr.play();
+			
+			answer1 = sc.nextLine().replaceAll(" ", "");
+			
+			if(contr.play().equals(answer1)) {
+					contr.stop();
+				System.out.println("맞췄어!");
+				//전체5점
+				sel.truefalse();
+				
+				
+			} else {
+				System.out.println("실망이야");
+				contr.stop();
+			}
+	      
+	      sc.nextLine();
+	      System.out.println();
+
+	      
+	      System.out.println("한창 소개팅 도중에, 갑작스레 어떤 여자가 소개팅남에게 인사를 했다!");
+	      sc.nextLine();
+	      System.out.println("\"여기서 만나네 오랜만이야 잘 지냈어?\"");
+	      sc.nextLine();
+	      System.out.println("누굴까 이 여자는...?");
+	      sc.nextLine();
+	      System.out.println("나는 어떻게 행동해야 할까?");
+	      sc.nextLine();
+	      System.out.println("1. 웃으며 같이 인사한다.");
+	      System.out.println("2. 째려본다.");
+	      System.out.println("3. 누군지 바로 물어본다.");
+	      System.out.println("4. 잠깐 자리를 비워준다.");
+	      
+	        answer = sc.nextInt();
+	        sel.select4(answer);
+	      
+	      sc.nextLine();
+	      System.out.println();
+	   
+	      
+	      
+	      System.out.println("알고보니 전여자친구라고 한다...!");
+	      sc.nextLine();
+	      System.out.println("나는 어떻게 반응해야 할까?");
+	      sc.nextLine();
+	      System.out.println("1. 전 여자친구에 대해 자세히 물어본다.");
+	      System.out.println("2. 대수롭지않게 넘긴다.");
+	      System.out.println("3. 스타카토 웃음소리를 낸다. 하.하.하");
+	      System.out.println("4. 질투한다.");
+	      
+	      answer = sc.nextInt();
+	      sel.select4(answer);
+
+	      
+	      sc.nextLine();
+	      System.out.println();
+	      
+	      System.out.println("표정관리가 안된 탓일까, 소개팅남은 내 눈치를 보며");
+	      sc.nextLine();
+	      System.out.println("안절부절하다가 분위기를 환기시키려는 듯,");
+	      sc.nextLine();
+	      System.out.println("\"어젯밤에 넷플릭스에서 영화봤었거든요!\"");
+	      sc.nextLine();
+	      System.out.println("\"제가 성대모사해볼테니 맞춰보실래요?\"");
+	      sc.nextLine();
+	      
+	      // 영화맞추기 게임
+	      System.out.println("2번문제__ 영화제목 맞추기 게임");
+
+			
+			MP3Player m = new MP3Player();
+			MovieGame_Controller movie = new MovieGame_Controller();
+			
+			//영화제목 맞추기 게임 시작
+			int[] bal = movie.play();
+			
+			System.out.println("=======영화제목 맞추기게임========");
+			System.out.println("총 3문제가 출제됩니다");
+			System.out.println("영화의 명장면의 대사입니다.");
+			System.out.println();
+			
+			for(int i = 0; i<3; i++) {
+				System.out.println("영화의 제목을 맞추세요?");
+				m.play(movie.moviegame.get(bal[i]).getPath());
+				answer1 = sc.nextLine().replaceAll(" ", "");
+				if(movie.moviegame.get(bal[i]).getTitle().equals(answer1)) {
+					movie.stop();
+					System.out.println("맞췄습니다. 상대의 호감도가 상승했습니다!");
+					// 맞추면 전체 +5
+					sel.truefalse();
+				}else {
+					movie.stop();
+					System.out.println("틀렸습니다! 상대방의 호감도가 감소했습니다!.");
+				}
+		}
+	      
+	      
+	     
+	      
+	      sc.nextLine();
+	      System.out.println();
+	      
+	      System.out.println("다시금 찾아온 훈훈한 분위기에, 소개팅이 순조롭게 흘러가고있다.");
+	      sc.nextLine();
+	      System.out.println("소개팅남이 \" 저희 게임 하나 더 할까요?\" 하며");
+	      sc.nextLine();
+	      System.out.println("밸런스 게임을 제안한다.!!");
+	      sc.nextLine();
+	      // 밸런스 게임
+	      System.out.println("3문제__벨런스게임(19금)");
+
+			
+
+			BalanceGame_Controller balance = new BalanceGame_Controller();
+			
+			System.out.println("벨런스 게임을 시작합니다!");
+			System.out.println("총 3문제입니다!");
+			System.out.println("무조건 둘 중에 하나를 골라야합니다!");
+			System.out.println("선택한 답안에 따라 점수가 당신의 이상형에 점수가 올라갑니다!");
+			System.out.println();
+			
+			//게임 진행
+			String[] bal1 = balance.play();
+			
+			for(int i = 0; i<3; i++) {
+			
+				System.out.println(i+1+"번 문제");
+				System.out.print(bal1[i] + ">> ");
+				
+		
+				answer = sc.nextInt();
+				//1,2번 선택에 따른 score증가
+				sel.select2(answer);
+				System.out.println();
+			}
+	      
+	      
+	     
+	      
+	      sc.nextLine();
+	      System.out.println();
+	      
+	      System.out.println("한창 고민도하고 웃기도하며 대화를 하다보니");
+	      sc.nextLine();
+	      System.out.println("어느 새, 시간이 훌쩍 지났다.");
+	      sc.nextLine();
+	      System.out.println("\"저희 시간가는 줄도 모르고 이야기했었네요?\"");
+	      sc.nextLine();
+	      System.out.println("\"(플레이어 이름)씨는 좋아하시는 음식이 뭐예요?\"");
+	      sc.nextLine();
+	      System.out.println("1. 초밥");
+	      System.out.println("2. 삼계탕");
+	      System.out.println("3. 만두");
+	      System.out.println("4. 특 A++ 한우");
+	      
+	      
+	      answer = sc.nextInt();
+	      sel.select4(answer);
+	      
+	      sc.nextLine();
+	      System.out.println();
+	      
+	      System.out.println("\"그럼 (플레이어이름)씨가 좋아하시는 거 먹으러 나갈까요?  슬슬?\"");
+	      sc.nextLine();
+	      System.out.println("\"네네 좋아요! ㅎㅎ\"");
+	      sc.nextLine();
+	      System.out.println("그렇게 내가 좋아하는 음식으로 저녁을 먹고, 각자의 집으로 돌아갔다.");
+	      sc.nextLine();
+	      System.out.println("첫 소개팅으로 긴장한 탓일까, 집에 오자마자 침대에 눕고");
+	      sc.nextLine();
+	      System.out.println("기대 반, 걱정 반으로 소개팅남의 연락을 기다렸다.");
+	      sc.nextLine();
+	      System.out.println("한참을 기다리며 졸고 있는데 카톡이[카톡음 삽입]울리는 소리에");
+	      sc.nextLine();
+	      System.out.println("화들짝 놀라며 휴대폰을 보았더니!!!!!!");
+	      sc.nextLine();
+	      
+	      
+		
+		
+		
+		System.out.println("건욱 점수 : " + sel.score1);
+		System.out.println("선웅 점수 : " + sel.score2);
+		System.out.println("진환 점수 : " + sel.score3);
+		System.out.println("지수 점수 : " + sel.score4);
+		
+		
+		
+		
+		System.out.println("집에 돌아와 쓰러지듯 칩대에 눕는 당신.");
+		next = sc.nextLine();
+		System.out.println("가만히 생각해보니 너무 서러워, 이불을 뒤집어쓰고");
+		next = sc.nextLine();
+		System.out.println("서럽게 엉엉 울기 시작한다....");
+		next = sc.nextLine();
+		System.out.println("그 순간....!!");
+		next = sc.nextLine();
+		System.out.println("당신에게 하나의 톡이 온다.");
+		next = sc.nextLine();
+		System.out.println("(플레이어 이름)아(야) 너 남자 소개 한번 받아볼래?");
+		next = sc.nextLine();
+		System.out.println("그렇게 모솔인생 '24년만의 첫 소개팅'이 다가오는데....");
+		next = sc.nextLine();
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+			
+		}
+	}
+

@@ -1,0 +1,43 @@
+package Question3;
+
+public class MP3Player {
+	
+	//1. 필드명
+	
+	//모델명
+	private String name;
+	//색상
+	private String color;
+	//전원상태
+	private boolean power;
+	
+	
+	//2. 메소드
+	
+	//생성자
+	public MP3Player(String name, String color, boolean power) {
+		super();
+		this.name = name;
+		this.color = color;
+		this.power = power;
+	}
+	
+	
+	
+	public void poweOnOff(Boolean onOff) {
+		
+	}
+	
+	public void play() {
+		
+	}
+	
+	public void stop() {
+		
+	}
+	
+	public int remove(int number) {
+		
+		return 0;
+	}
+}

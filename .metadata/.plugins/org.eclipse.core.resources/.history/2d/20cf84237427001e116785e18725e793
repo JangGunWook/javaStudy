@@ -1,0 +1,8 @@
+
+public class BalanceGame_DB {
+	
+	// 1.필드
+	
+	String cat
+
+}

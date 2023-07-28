@@ -1,0 +1,24 @@
+
+public class Salon extends Store {
+
+	// 1.필드명
+	double technology;
+	double kndness;
+	
+	
+	// 2. 메소드
+	public Salon(String name, String event, double technology, double kndness, double price) {
+		super();
+		super.name = name;
+		super.event = event;
+		super.price = price;
+		this.technology = technology;
+		this.kndness = kndness;
+	}
+	
+	public double grade() {
+		return (technology + kndness + price)/3;
+		
+	}
+	
+}

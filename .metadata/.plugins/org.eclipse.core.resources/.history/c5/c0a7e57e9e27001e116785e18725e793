@@ -1,0 +1,41 @@
+package MovieGame;
+
+import java.util.Scanner;
+
+import javazoom.jl.player.MP3Player;
+
+public class MovieGame_Main {
+
+	public static void main(String[] args) {
+		
+		MP3Player m = new MP3Player();
+		Scanner  sc = new Scanner(System.in);
+		MovieGame_Controller movie = new MovieGame_Controller();
+		
+		//영화제목 맞추기 게임 시작
+		int[] bal = movie.play();
+		System.out.println("=======영화제목 맞추기게임========");
+		System.out.println("총 3문제가 출제됩니다");
+		System.out.println("영화의 명장면의 대사입니다.");
+		System.out.println();
+		
+		for(int i = 0; i<3; i++) {
+			System.out.println("영화의 제목을 맞추세요?");
+			m.play(movie.moviegame.get(bal[i]).getPath());
+			String answer = sc.next().trim();
+			if(movie.moviegame.get(bal[i]).getTitle().equals(answer)) {
+				movie.stop();
+				System.out.println("맞췄습니다. 상대의 호감도가 상승했습니다!");
+			}else {
+				movie.stop();
+				System.out.println("틀렸습니다! 상대방의 호감도가 감소했습니다!.");
+			}
+	
+	
+			
+		
+		
+	}
+
+}
+}

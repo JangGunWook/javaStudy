@@ -1,0 +1,19 @@
+import java.util.ArrayList;
+
+public class MusicController {
+	public static void main(String[] args) {
+		MusicController m = new MusicController();
+		System.out.println(m.playlist.get(1).getPlayTime());
+		
+	}
+	
+	ArrayList<MusicVo> playlist = new ArrayList<MusicVo>();
+	
+	
+
+	public MusicController() {
+		
+		
+	}
+
+}

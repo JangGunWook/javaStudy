@@ -1,0 +1,42 @@
+package MovieGame;
+
+public class MovieGame_Model {
+
+
+			
+			// 1. 필드
+			// 제목
+			String title;
+			String path;
+
+	
+			
+			
+			// 2. 메소드
+			// 생성자
+			public MovieGame_Model(String title, String path) {
+				super();
+				this.title = title;
+				this.path = path;
+			}
+
+
+
+			// getter/setter
+
+			public String getTitle() {
+				return title;
+			}
+
+
+
+
+			public void setTitle(String title) {
+				this.title = title;
+			}
+	
+	
+			
+			
+
+}

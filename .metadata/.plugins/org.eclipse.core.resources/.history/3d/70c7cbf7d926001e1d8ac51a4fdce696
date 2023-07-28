@@ -1,0 +1,25 @@
+import java.util.ArrayList;
+
+public class StoreController {
+
+	ArrayList<Restaurant> res = new ArrayList<Restaurant>();
+	
+	ArrayList<Salon> sal = new ArrayList<Salon>();
+	
+	public StoreController() {
+		res.add(new Restaurant("해성식당","식당", 75, 75, 75, 75));
+		res.add(new Restaurant("정림이네","식당",95,75,65,80));
+		res.add(new Restaurant("왕뼈사랑","식당",80,75,82,72));
+		
+		sal.add(new Restaurant("박승철", "미용", 50, 70, 80);
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+}

@@ -1,0 +1,15 @@
+import java.util.ArrayList;
+
+public class MusicController {
+	
+	ArrayList<MusicVo> playlist = new ArrayList<MusicVo>();
+	
+	public MusicController(MusicVo d) {
+		playlist.add(d);
+	}
+	
+	public MusicController() {
+		
+	}
+
+}

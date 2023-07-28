@@ -1,0 +1,153 @@
+package MVC;
+
+import java.awt.List;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class View {
+
+	public static void main(String[] args) {
+		
+	
+		
+		Scanner sc = new Scanner(System.in);
+		String k = null;
+		String playId=null;
+		
+		System.out.println("====회원가입 및 로그인====");
+	   while(true) {System.out.println("[1] 회원가입 [2] 로그인 [3] 회원탙퇴");
+		int input = sc.nextInt();
+		
+	
+		
+/////////////////////////////////////////////////////////// 회원가입		
+		if(input==1) {
+			System.out.println("====회원가입====");
+			
+			// 사용자 입출력 구간
+			System.out.print("ID 입력 : ");
+			String id  = sc.next();
+			System.out.print("PW 입력 : ");
+			String pw  = sc.next();
+			System.out.print("이름 입력 : ");
+			String name  = sc.next();
+			
+			Login_Controller dao = new Login_Controller();
+			int row = dao.join(id, pw, name);
+			
+			if(row>0) {
+				System.out.println("회원가입 성공 ! ");
+			}else {
+				System.out.println("회원가입 실패 ㅠㅠ");
+			}
+	/////////////////////////////////////////////////////////// 로그인		
+		}else if(input ==2) {
+			System.out.println("====로그인====");
+
+			System.out.print("ID 입력 : ");
+			String id = sc.next();
+			System.out.print("PW 입력 : ");
+			String pw = sc.next();
+			
+			Login_Controller dao = new Login_Controller();
+			String uName = dao.login(id, pw);
+			
+			if(uName!= null) {
+				System.out.println(uName + "님 환영합니다.");
+				k=uName;
+				playId= id;
+				 break;
+			}else {
+				System.out.println("로그인에 실패했습니다.");
+			}
+			
+		}
+/////////////////////////////////////////////////////////// 회원탈퇴	
+		else if(input==3) {
+			System.out.println("====회원탈퇴====");
+			
+			System.out.print("탈퇴할 ID 입력 : ");
+			String id = sc.next();
+			System.out.print("PW 입력 : ");
+			String pw = sc.next();
+			
+			Login_Controller dao = new Login_Controller();
+			int row = dao.delUser(id, pw);
+			
+			if(row>0) {
+				System.out.println("회원 탈퇴에 성공하였습니다.");
+			}else {
+				System.out.println("올바른 ID나 PW를 입력해주세요.");
+			}
+			
+			
+		}else {
+			System.out.println("잘못누르셨습니다!");
+		}
+	   }
+		
+		
+		
+/////////////////////////////////////////////////////////// 스코어 입력
+		
+		// 사용자 입출력 구간
+	
+		int score1=2;
+		int score2=2;
+		int score3=2;
+		int score4=2;
+		
+	    
+		Login_Controller dao = new Login_Controller();
+		
+		int row = dao.finalScore(playId, score1, score2, score3, score4);
+		
+		if(row>0) {
+			System.err.println(k+"님은 각각 건욱타입 "+score1+"점, 선웅타입 "+score2+"점, 진환타입 "+score3+"점, 지수타입 "+score4+"점을 획득하였습니다");
+		}else {
+			System.out.println("입력이 올바르지않습니다");
+		}
+		
+		sc.nextLine();
+		
+		System.out.println("랭킹에 등록 하시겠습니까? 아니오를 입력한 기존 유저는, 해당 유저의 모든 데이터가 삭제됩니다.");
+		System.out.println(">> [1] 네 [2] 아니오");
+		 int t =sc.nextInt();
+		if(t==1) {System.out.println("랭킹에 등록되었습니다~");
+			
+		}else if(t==2) {
+			System.out.println("아니오를 입력하셨습니다.");
+		
+			Login_Controller dao1 = new Login_Controller();
+			int row1 = dao1.delScore(playId);
+			
+			if(row>0) {
+				System.out.println("랭킹에서 제외되었습니다.");
+			}else {
+				System.out.println("올바른 ID를 입력해주세요.");
+			}
+		}
+		else {
+			System.out.println("잘못누르셨습니다!");
+			
+		}
+	   
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+			
+
+		
+	}
+
+}

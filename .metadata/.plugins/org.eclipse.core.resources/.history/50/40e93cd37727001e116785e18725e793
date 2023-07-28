@@ -1,0 +1,12 @@
+package MovieGame;
+
+import javazoom.jl.player.MP3Player;
+
+public class Movie_controller {
+	
+	private MP3Player movie = new MP3Player();
+	private String compath = 
+	
+	
+
+}

@@ -1,0 +1,56 @@
+package view;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Select {
+
+	Scanner sc = new Scanner(System.in);
+
+	public void select(String Q, int input) {// 질문 출력 및 질문선택 메소드
+
+		int score1 = 0;
+		int score2 = 0;
+		int score3 = 0;
+		int score4 = 0;
+
+		ArrayList<String> list = new ArrayList<String>();
+
+		while (true) {
+			System.out.println("스토리");
+			System.out.println("==========================");
+
+			System.out.println("플레이어 대사");
+			System.out.println();
+
+			System.out.println("1. 선택지");
+			System.out.println("2. 선택지");
+			System.out.println("3. 선택지");
+			System.out.println("4. 선택지");
+
+			if (input == 1) {
+				System.out.println("선택지 선택 후 대사");
+				System.out.println("");
+				score1 += 0;
+
+			} else if (input == 2) {
+				System.out.println("선택지 선택 후 대사");
+				System.out.println("");
+				score2 += 0;
+
+			} else if (input == 3) {
+				System.out.println("선택지 선택 후 대사");
+				System.out.println("");
+				score3 += 0;
+
+			} else if (input == 4) {
+				System.out.println("선택지 선택 후 대사");
+				System.out.println("");
+				score4 += 0;
+			}
+
+		}
+
+	}
+
+}

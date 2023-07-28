@@ -1,0 +1,35 @@
+package 연습용;
+
+import java.io.IOException;
+import org.im4java.core.ConvertCmd;
+import org.im4java.core.IM4JavaException;
+import org.im4java.core.IMOperation;
+
+public class ex4번 {
+
+	public static void main(String[] args) {
+        String inputImagePath = "input_image.jpg";
+        String outputImagePath = "output_image_%03d.jpg";
+        double frameRate = 2.0; // 2 프레임/초 (0.5초 간격)
+
+        try {
+            splitImage(inputImagePath, outputImagePath, frameRate);
+            System.out.println("이미지를 0.5초 간격으로 나누었습니다.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void splitImage(String inputImagePath, String outputImagePath, double frameRate)
+            throws IOException {
+        IMOperation op = new IMOperation();
+        op.addImage(inputImagePath);
+        op.setOption("dispose", "Background");
+        op.delay(1000 / frameRate); // 간격을 ms로 변환
+        op.addImage(outputImagePath);
+
+        ConvertCmd cmd = new ConvertCmd();
+        cmd.run(op);
+    }
+	}
+}

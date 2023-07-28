@@ -1,0 +1,25 @@
+
+public class Restaurant extends Store {
+
+	// 1. 필드
+	double service;
+	double flavor;
+	double clean;
+
+	
+	
+	//2. 메서드
+	//생성자
+	public Restaurant(double service, double flavor, double clean) {
+		super();
+		this.service = service;
+		this.flavor = flavor;
+		this.clean = clean;
+	}
+	
+	public double grade() {
+		return 
+	}
+	
+	
+}

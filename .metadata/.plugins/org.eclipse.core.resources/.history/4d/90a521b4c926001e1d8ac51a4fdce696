@@ -1,0 +1,13 @@
+import java.util.Scanner;
+
+public class MusicPlayer {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("====뮤직 플레이어====");
+		System.out.print("1.등록 2.목록 3.삭제 4.전체삭제 5.종료 >>");
+		int num = sc.nextInt();
+	}
+
+}

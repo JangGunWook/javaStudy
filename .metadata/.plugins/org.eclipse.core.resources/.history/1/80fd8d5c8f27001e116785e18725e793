@@ -1,0 +1,38 @@
+package MovieGame;
+
+import java.util.ArrayList;
+import java.util.Random;
+
+import javazoom.jl.player.MP3Player;
+
+public class MovieGame_Controller {
+	
+	Random ran = new Random();
+	
+	private MP3Player movie = new MP3Player();
+	private String compath = "C:\\Users\\smhrd\\Desktop\\JavaStudy\\MiniProject\\src\\Movie\\";
+	private ArrayList<MovieGame_Model> moviegame = new ArrayList<MovieGame_Model>();
+	private int i= ran.nextInt(5);
+	
+	
+	public MovieGame_Controller() {
+		moviegame.add(new MovieGame_Model("7번방의선물",compath+"7번방의선물.mp3"));
+		moviegame.add(new MovieGame_Model("극한직업", compath + "극한직업.mp3"));
+		moviegame.add(new MovieGame_Model("베테랑", compath + "베테랑.mp3"));
+		moviegame.add(new MovieGame_Model("변호인", compath + "변호인.mp3"));
+		moviegame.add(new MovieGame_Model("신세계", compath + "신세계.mp3"));
+	}
+
+	//재생하기
+	public void play() {
+		movie.play(moviegame.get(i).getPath());
+	}
+	
+	// 정지하기
+		public void stop() {
+			if(movie.isPlaying()) {
+			movie.stop();
+			}
+		}
+	
+}

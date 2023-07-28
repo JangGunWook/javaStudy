@@ -1,0 +1,15 @@
+package MovieGame;
+
+import java.util.ArrayList;
+
+import javazoom.jl.player.MP3Player;
+
+public class MovieGame_Controller {
+	
+	private MP3Player movie = new MP3Player();
+	private String compath = "C:\\Users\\smhrd\\Desktop\\JavaStudy\\MiniProject\\src\\Movie";
+	private ArrayList<MovieGame_Model> moviegame = new ArrayList<MovieGame_Model>();
+	
+	public MovieGame_controller
+
+}

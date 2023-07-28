@@ -1,0 +1,60 @@
+import java.util.ArrayList;
+import java.util.Random;
+
+public class balanceGame {
+
+	public static <Stirng> void main(String[] args) {
+		
+	
+		
+		
+		Random ran = new Random();
+		
+		ArrayList<String> balance = new ArrayList<String>();
+		String[] bal = new String[10];
+		
+		// 1번 게임
+		balance.add("낮저밤이 vs 낮이밤저");
+		// 2번 게임
+		balance.add("이성친구 가능 vs 이성친구 불가능");
+		// 3번 게임
+		balance.add("절친 집에 내 애인 팬티 vs 애인 집에 내 절친 팬티");
+		// 4번 게임
+		balance.add("양치 안하고 키스하기 vs 안씻고 사랑을 찐하게 나누기");
+		// 5번 게임
+		balance.add("애인이 남사친 허용 범위 내의 스킨십은? 포응vs팔짱");
+		// 6번 게임
+		balance.add("불을 키우고 사랑을 나누기 vs 불을 끄고 사랑을 나누기");
+		// 7번 게임
+		balance.add("결혼하면 자녀는 3명을 기르자 vs 자식없이 평생 배우자랑만 살기");
+		// 8번 게임
+		balance.add("남친이 털복숭이 vs 남친이 대머리");
+		// 9번 게임
+		balance.add("한 달동안 뽀뽀금지 vs 포웅금지");
+		// 10번 게임
+		balance.add("몸매만 좋은 남친 vs 얼굴만 잘생긴 남친");
+		
+		System.out.println("벨런스 게임을 시작합니다!");
+		
+		// 인덱스 번호 중복 안되게 하는 알고리즘
+		for(int i =0; i<balance.size(); i++) {
+			bal[i] = balance.get(ran.nextInt(10)); //0~9번까지
+			for(int j=0; j<i; j++) {	//비교대상할 인덱스 번호를 만들기
+				if(bal[i]==bal[j]) {
+					i--;
+				}
+			}
+		}
+		
+		for(int i = 0; i<3; i++) {
+			System.out.println("행운의 숫자 : " + bal[i]);
+		}
+		
+
+	}
+	
+	
+	
+	
+
+}
