@@ -1,2 +1,2 @@
-# python_study
+# Java_study
 
