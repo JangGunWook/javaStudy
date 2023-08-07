@@ -6,7 +6,7 @@
   - IDE : Eclipse
   - DB : Oracle
 
-Link: [naver][naverlink](https://blog.naver.com/zhsksrjsdnr)]
+[블로그][[naverlink](https://blog.naver.com/zhsksrjsdnr)]
 
 
 # 💻 과업
