@@ -6,9 +6,8 @@
   - IDE : Eclipse
   - DB : Oracle
 
-Link: [naver][naverlink]
+Link: [naver][naverlink](https://blog.naver.com/zhsksrjsdnr)]
 
-[googlelink]:[https://blog.naver.com/zhsksrjsdnr]
 
 # 💻 과업
 * 변수
